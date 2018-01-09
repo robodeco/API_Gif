@@ -36,6 +36,7 @@ $("document").ready(function () {
     });
 });
 
+//the below code populates the page with gifs using an API and ajax
 
 function onClickFetch () {
 $("button").on("click", function  (){
@@ -59,13 +60,14 @@ $("button").on("click", function  (){
           var p = $("<p>").text("Rating: " + rating);
 
           var gifImage = $("<img>");
+          gifImage.attr("class", "Image")
 
-//below are the first instances of me trying to freeze the gifs every time they are clicked. every time they are clicked the src switches to and from the data states below
+
               gifImage.attr("src", results[i].images.fixed_height_still.url);
 
-              gifDiv.attr("data-state", "still");
-              gifDiv.attr("data-still", results[i].images.fixed_height_still.url);
-              gifDiv.attr("data-animate", results[i].images.fixed_height.url);
+              gifImage.attr("data-state", "still");
+              gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+              gifImage.attr("data-animate", results[i].images.fixed_height.url);
 
               gifDiv.prepend(p);
               gifDiv.prepend(gifImage);
@@ -80,10 +82,10 @@ $("button").on("click", function  (){
   });
 }
 
-  //the below code does not seem to be animating the gifs when clicked, even though the source of the gifs change. also, i know its been discussed in class a lot, but is "this" referring to the document in the scenario below as its not wrapped in an object?
+  //the below code is the function used to animate the gifs when clicked
 
 function pauseGif() {
-$(".gif").on("click", function () {
+$(".Image").on("click", function () {
 var state = $(this).attr("data-state");
 
 if (state === "still") {
